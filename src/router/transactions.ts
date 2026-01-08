@@ -69,7 +69,7 @@ router.put("/:id", (req: Request, res: Response) => {
 });
 
 /* =====================
-入出金削除（論理削除）
+入出金削除（削除してる風）
 ===================== */
 router.patch("/:id", (req: Request, res: Response) => {
     const id = Number(req.params.id);
