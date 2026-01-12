@@ -29,19 +29,19 @@ PATCH 状態変更
 
 ### リクエスト
 {
-        "name": "山田　太郎",
+        "name": "田中　明子",
         "userName": "たっぴー",
-        "email": "taro-y@gmail.com",
-        "password": "taro1212"
+        "email": "aki-t@gmail.com",
+        "password": "121212"
 }
 
 ### レスポンス
 {
         "userId": 2,
-        "name": "山田　太郎",
+        "name": "田中　明子",
         "userName": "たっぴー",
-        "email": "taro-y@gmail.com",
-        "password": "taro1212"
+        "email": "aki-t@gmail.com",
+        "password": "121212"
 }
 
 ## ログイン
@@ -50,8 +50,8 @@ PATCH 状態変更
 
 ### リクエスト
 {
-    "email": taro-y@gmail.com,
-    "password": "taro1212"
+    "email": aki-t@gmail.com,
+    "password": "121212"
 }
 
 ### レスポンス

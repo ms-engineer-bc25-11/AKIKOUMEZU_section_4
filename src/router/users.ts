@@ -4,14 +4,14 @@ import express, { Request, Response } from "express";
 // 小さなルーターを作っている。これがusers専用の司令塔
 const router = express.Router();
 
-/* 仮のユーザーデータ（DB代わり） */
+/* 仮のユーザーデータ*/
 let users = [
   {
     userId: 1,
-    name: "テスト",
-    userName: "test",
-    email: "test@test.com",
-    password: "password",
+    name: "田中　明子",
+    userName: "たっぴー",
+    email: "aki-t@gmail.com",
+    password: "121212",
   },
 ];
 
