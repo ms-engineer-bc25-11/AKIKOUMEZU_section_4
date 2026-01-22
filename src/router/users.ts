@@ -14,9 +14,7 @@ const users = [
   },
 ];
 
-/* =====================
-【計算マニュアル】ユーザーを認証する関数
-===================== */
+/* 【マニュアル】ユーザーを認証する関数 */
 export const authenticateUser = (
   allUsers: any[],
   email: string,
@@ -26,20 +24,23 @@ export const authenticateUser = (
   return allUsers.find((u) => u.email === email && u.password === pass);
 };
 
+/* 【マニュアル】新しいユーザーオブジェクトを作る関数 */
+export const createNewUser = (
+  currentUsers: any[],
+  userData: { name: string; userName: string; email: string; password: string }
+) => {
+  return {
+    userId: currentUsers.length + 1,
+    ...userData, // 渡された名前やメールなどをそのまま展開して詰め込む
+  };
+};
+
 /* =====================
 ユーザー登録
 POST /api/v1/users
 ===================== */
 router.post('/', (req: Request, res: Response) => {
-  const { name, userName, email, password } = req.body;
-
-  const newUser = {
-    userId: users.length + 1,
-    name,
-    userName,
-    email,
-    password,
-  };
+  const newUser = createNewUser(users, req.body);
 
   users.push(newUser);
   res.status(201).json(newUser);

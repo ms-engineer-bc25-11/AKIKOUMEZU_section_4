@@ -1,5 +1,5 @@
 import { test, expect } from 'vitest';
-import { authenticateUser } from './users';
+import { authenticateUser, createNewUser } from './users';
 
 test('正しいメールアドレスとパスワードで、ユーザーが特定できること', () => {
   // 1. 【準備】テスト用のニセモノユーザー
@@ -13,4 +13,23 @@ test('正しいメールアドレスとパスワードで、ユーザーが特�
   // 3. 【確認】ちゃんとユーザーが見つかって、IDが1であること
   expect(result).toBeDefined(); // 結果が空っぽ（undefined）じゃないこと
   expect(result?.userId).toBe(1);
+});
+
+test('新しいユーザーが正しいIDで作成されること', () => {
+  // 1. 準備：現在1人ユーザーがいる状態
+  const mockUsers = [{ userId: 1 }];
+  const newInfo = {
+    name: 'テスト',
+    userName: 'test',
+    email: 'a@b.com',
+    password: 'pw',
+  };
+
+  // 2. 実行：マニュアルを使って新しいユーザーを作る
+  const newUser = createNewUser(mockUsers, newInfo);
+
+  // 3. 確認：IDが「2」になっているかな？
+  expect(newUser.userId).toBe(2);
+  // 名前も正しくコピーされているかな？
+  expect(newUser.name).toBe('テスト');
 });
