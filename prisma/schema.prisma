@@ -1,3 +1,5 @@
+//データベースの方を決めるファイル（どんな項目を保存するか）
+
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
@@ -12,4 +14,14 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+model Transaction {
+  id            Int      @id @default(autoincrement()) // 新しいデータに自動で番号を振る設定
+  date          String
+  category      String
+  amount        Int
+  paymentMethod String
+  type          String   // "入金" か "出金"
+  isActive      Boolean  @default(true) // デフォルトは「有効」
 }
