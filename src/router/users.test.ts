@@ -1,8 +1,10 @@
 import { test, expect } from 'vitest';
 import { authenticateUser, createNewUser } from './users';
 
+// 正常系テスト //
+
 test('正しいメールアドレスとパスワードで、ユーザーが特定できること', () => {
-  // 1. 【準備】テスト用のニセモノユーザー
+  // 1. 【準備】テスト用ユーザー
   const mockUsers = [
     { userId: 1, email: 'test@example.com', password: 'password123' },
   ];
@@ -32,4 +34,19 @@ test('新しいユーザーが正しいIDで作成されること', () => {
   expect(newUser.userId).toBe(2);
   // 名前も正しくコピーされているかな？
   expect(newUser.name).toBe('テスト');
+});
+
+// 異常系テスト //
+
+test('間違ったパスワードの時、ユーザーが特定できない（undefinedになる）こと', () => {
+  // 1. 準備：正しいデータ
+  const mockUsers = [
+    { userId: 1, email: 'test@example.com', password: 'password123' },
+  ];
+
+  // 2. 実行：あえて「違うパスワード」を渡してみる
+  const result = authenticateUser(mockUsers, 'test@example.com', 'wrong-pass');
+
+  // 3. 確認：結果が「空っぽ（undefined）」であることを期待する
+  expect(result).toBeUndefined();
 });
